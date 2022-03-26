@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  ###> doctrine/doctrine-bundle ###
+  database:
+    image: mysql:5.7
+    environment:
+      environment:
+        - MYSQL_PASSWORD=root
+        - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - database
+    ports:
+      - 8083:80
+    environment:
+      - PMA_HOST=database
+      - UPLOAD_LIMIT=1024M
+      - MEMORY_LIMIT=1024M
+      - MAX_EXECUTION_TIME=300
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+###< doctrine/doctrine-bundle ###
+
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  db-data:
+###< doctrine/doctrine-bundle ###
