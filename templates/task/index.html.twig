@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}To-Do List{% endblock %}
+
+{% block body %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        {% for dev in data.developers %}
+            <th scope="col">{{dev.name}}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, tasks in data.tasks %}
+        <tr>
+            <th scope="row">{{ key }}. Hafta</th>
+            {% for dev in data.developers %}
+                <td>
+                    {% for task in tasks[dev.name] %}
+                        <p>{{ task }}</p>
+                    {% endfor %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
