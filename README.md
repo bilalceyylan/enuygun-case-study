@@ -41,3 +41,5 @@ symfony server:start -d
 ```
 
 #Let's go http://127.0.0.1:8000/task
+
+![alt text](https://github.com/bilalceyylan/enuygun-case-study/blob/main/public/enuygun-to-do-planning.png?raw=true)
